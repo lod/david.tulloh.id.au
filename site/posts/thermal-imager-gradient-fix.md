@@ -28,14 +28,14 @@ Some before and after photos of the processing. A thermally flat image and some 
 
 <table style="width: 540px">
 <tr>
-<td style="border: none;"><img src="/images/wp/floor_pre.png" style="width: 250px"><br/><span class="caption" style="display: block; text-align: center;">Before &#8211; Floor</span></td>
-<td style="border: none;"><img src="/images/wp/floor_post.png" style="width: 250px"><br/><span class="caption" style="display: block; text-align: center;">After &#8211; Floor</span></td>
+<td style="border: none;"><img src="/posts/images/wp/floor_pre.png" alt="" style="width: 250px"><br/><span class="caption" style="display: block; text-align: center;">Before &#8211; Floor</span></td>
+<td style="border: none;"><img src="/posts/images/wp/floor_post.png" alt="" style="width: 250px"><br/><span class="caption" style="display: block; text-align: center;">After &#8211; Floor</span></td>
 </tr>
 </table>
 <table style="width: 540px">
 <tr>
-<td style="border: none;"><img src="/images/wp/face_pre.png" style="width: 250px"><br/><span class="caption" style="display: block; text-align: center;">Before &#8211; Face</span></td>
-<td style="border: none;"><img src="/images/wp/face_post.png" style="width: 250px"><br/><span class="caption" style="display: block; text-align: center;">After &#8211; Face</span></td>
+<td style="border: none;"><img src="/posts/images/wp/face_pre.png" alt="" style="width: 250px"><br/><span class="caption" style="display: block; text-align: center;">Before &#8211; Face</span></td>
+<td style="border: none;"><img src="/posts/images/wp/face_post.png" alt="" style="width: 250px"><br/><span class="caption" style="display: block; text-align: center;">After &#8211; Face</span></td>
 </tr>
 </table>
 

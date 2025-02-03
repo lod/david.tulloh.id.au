@@ -58,7 +58,7 @@ img[alt="Eeschema circuit"] {
 }
 </style>
 
-![Eeschema circuit](images/wp/grideye_usb-compressor.svg)
+![Eeschema circuit](/posts/images/wp/grideye_usb-compressor.svg)
 
 
 The AVR must run off 5V in order to be fast enough to handle the USB communications. USB communications however are a 3.3V signal and while driving it at 5V typically works it's certainly not a nice thing to do. The weak zenner diodes are a <a href="http://vusb.wikidot.com/hardware#toc3">bidirectional level conversion technique</a>.
@@ -97,7 +97,7 @@ jQuery(function(){
 <div id="single_pcb_placeholder">
 	<!-- <img src="/images/wp/grideye_usb.first_pass-brd-compressor.svg"/> -->
 
-![](images/wp/grideye_usb.first_pass-brd-compressor.svg)
+![](/posts/images/wp/grideye_usb.first_pass-brd-compressor.svg)
 
 <div>Click image for interactive 3D model</div>
 </div>
@@ -143,7 +143,7 @@ jQuery(function(){
 <div id="double_pcb_placeholder">
 	<!-- <img src="/images/wp/grideye_usb.two_sided-brd-compressor.svg"/> -->
 
-![](/images/wp/grideye_usb.two_sided-brd-compressor.svg)
+![](/posts/images/wp/grideye_usb.two_sided-brd-compressor.svg)
 
 <div>Click image for interactive 3D model</div>
 </div>

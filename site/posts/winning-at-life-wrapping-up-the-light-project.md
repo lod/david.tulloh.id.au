@@ -16,7 +16,7 @@ There was a bit of ironic excitement, I was there installing a light designed to
 The only think I forgot to do was take some pictures.  So this is another boring lump of text, here, have a puppy.
 
 <!-- TODO: Fix up size -->
-![Box of a puppies milk, complete with a picture of the puppy it was stolen from](/images/wp/smallpuppymilk.jpg "Puppy Milk")
+![Box of a puppies milk, complete with a picture of the puppy it was stolen from](/posts/images/wp/smallpuppymilk.jpg "Puppy Milk")
 <p class="wp-caption-text">Milk for sadists, stolen from 100% organic puppies</p>
 
 ### In praise of Bunnings

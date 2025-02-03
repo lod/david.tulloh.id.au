@@ -10,7 +10,7 @@ tags:
 ---
 
 <!-- TODO: Float right (maybe), link to full size -->
-![Crumbly biscuits in a paper lined container](images/wp/butterhorns.jpg "Delicious butterhorns")
+![Crumbly biscuits in a paper lined container](/posts/images/wp/butterhorns.jpg "Delicious butterhorns")
 
 ### Work
 

@@ -12,7 +12,7 @@ So I cheated a bit and pushed the deadline out a week.  While much of the checkl
 
 
 <!-- TODO: Link to full size -->
-![Tax website screenshot](/images/wp/proto1_screenshot.png)
+![Tax website screenshot](/posts/images/wp/proto1_screenshot.png)
 <p class="wp-caption-text">Tax website screenshot</p>
 
 ### Target features

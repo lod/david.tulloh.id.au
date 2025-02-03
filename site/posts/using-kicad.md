@@ -45,7 +45,7 @@ I have published a writeup of the board I designed, at [/grideye-usb/](/grideye-
 
 ## <span id="Eeschema">Eeschema</span>
 
-![Eeschema screenshot](images/wp/eeschema.screenshot.med.png "Eeschema screenshot")
+![Eeschema screenshot](/posts/images/wp/eeschema.screenshot.med.png "Eeschema screenshot")
 
 Eeschema is nice and familiar, you can place parts, connect wires,
 create named nets etc. I had a very simple five component board so had
@@ -121,7 +121,7 @@ on top. The PCB library tool is a significant step forward.
 
 ## <span id="Pcbnew">Pcbnew</span>
 
-![Pcbnew screen shot showing top layer](/images/wp/pcbnew.screenshot.med.png "Pcbnew screenshot")
+![Pcbnew screen shot showing top layer](/posts/images/wp/pcbnew.screenshot.med.png "Pcbnew screenshot")
 
 It took me a while to realise that there are actually three different
  PCB programs bundled into Pcbnew. They are listed in the view menu as

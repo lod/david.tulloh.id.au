@@ -16,7 +16,7 @@ My primary goal of this project is to improve the microwave user interface, shif
 <!-- Whitespace between div and image is necessary, triggers <p> and proper parsing -->
 <div style="display: block; margin: 0 auto; border: 3px solid black; padding: 0 40px; ">
 
-![](/images/wp/crap.png)
+![](/posts/images/wp/crap.png)
 </div>
 
 Everything else, most of the work, is to support and implement this improvement. As I am now up to playing with the screens, selecting screen sizes and touch interfaces it seemed worthwhile to spend a bit of time considering what the GUI will actually look like.
@@ -24,7 +24,7 @@ Everything else, most of the work, is to support and implement this improvement.
 I did a few pages of pencil sketches, useful to work through a wide variety of ideas.
 
 <!-- TODO: Link to full sized version -->
-![](/images/wp/gui_sketches.png)
+![](/posts/images/wp/gui_sketches.png)
 
 Then I did a prototype implementation in HTML to iterate the better ideas. This prototype is below, it is a fully interactive webpage &#8211; some bits pretend to work, other bits are stubbed out.
 

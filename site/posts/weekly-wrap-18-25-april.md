@@ -9,7 +9,7 @@ tags:
 ---
 
 <!-- TODO: Link to full sized, float right -->
-![Marbled butter biscuits](images/wp/marbled.jpg "Marbled butter biscuits")
+![Marbled butter biscuits](/posts/images/wp/marbled.jpg "Marbled butter biscuits")
 
 ### Work
 

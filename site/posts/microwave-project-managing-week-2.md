@@ -9,7 +9,7 @@ tags:
   - manufacturing
 ---
 
-       <h3>Manufacturing</h3>
+<h3>Manufacturing</h3>
 <p>The visit to <a href="http://www.amapro.com.au/">AMAPRO</a> on Friday was a significant success, I feel confident enough about the process that I didn't follow up my other turret punching options.</p>
 <p>The company is run by a man who strongly reminds me of someone I have worked for recently, and to a lesser degree an earlier boss. This simultaneously reassures me that he will do a good quality job and also terrifies me because I am where he extracts his money.</p>
 <p>The factory floor tour was very impressive, an expansive space but very clean, no clutter.  I was most interested in their three Amada turret punch machines, recent models which seemed well maintained, one was also fitted with an automated feed allowing it to run unsupervised overnight.  They also had a number of press brake machines, some automated welders and a range of other standard tooling toys.</p>

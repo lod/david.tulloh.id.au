@@ -9,10 +9,10 @@ tags:
 ---
 
 <!-- TODO: Float right, link to full image -->
-![Cheesecake danish](images/wp/cheesecake_danish.png "Cheesecake danish")
+![Cheesecake danish](/posts/images/wp/cheesecake_danish.png "Cheesecake danish")
 
 <!-- TODO: link to full image -->
-![CSIRO notebook](images/wp/notebook.jpg "CSIRO notebook")
+![CSIRO notebook](/posts/images/wp/notebook.jpg "CSIRO notebook")
 
 Attended a [car accident](https://web.archive.org/web/20221103061715/http://oceangrovevoice.com.au/uncategorized/2016-04-06/car-flips-rolls-into-ditch/) on Monday with the SES.
 

@@ -1,5 +1,4 @@
 require('dotenv').config();
-// const { eleventyImageTransformPlugin } = require("@11ty/eleventy-img");
 
 const
   glob = require('fast-glob'),
@@ -9,8 +8,9 @@ const
   theme = process.env.npm_package_config_theme;
 
 
-module.exports = (eleventyConfig) => {
+module.exports = async function(eleventyConfig) {
   // eleventyConfig.addPlugin(eleventyImageTransformPlugin);
+  const { eleventyImageTransformPlugin } = await import("@11ty/eleventy-img");
 
   // Engine: Markdown & plugins
   const Markdown = require('markdown-it')({
@@ -41,7 +41,8 @@ module.exports = (eleventyConfig) => {
     })
     .use(require('markdown-it-attrs'), {
       allowedAttributes: ['id', 'class']
-    })
+    });
+  /*
     .use(require('markdown-it-eleventy-img'), {
       imgOptions: {
         widths: [720, 1080, 1440, 1800],
@@ -56,8 +57,23 @@ module.exports = (eleventyConfig) => {
         return env.page.inputPath.split('/').slice(0, -1).concat(src).join('/');
       }
     });
+  */
   eleventyConfig.setLibrary('md', Markdown);
 
+  eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
+      // which file extensions to process
+      extensions: 'html',
+      // optional, output image formats
+      formats: ['jpg', 'webp'],
+      // optional, output image widths
+      widths: ['auto', 400, 800],
+      // optional, attributes assigned on <img> override these values.
+      defaultAttributes: {
+          loading: 'lazy',
+          sizes: '100vw',
+          decoding: 'async',
+      },
+  });
 
   // Engine: Nunjucks
   eleventyConfig.setNunjucksEnvironmentOptions({ trimBlocks: true, lstripBlocks: true });

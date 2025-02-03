@@ -44,7 +44,7 @@ The microwave radiation cavity is going to be made of several sheets of metal we
 
 
 <!-- TODO: Show 310px width, show or format caption -->
-![Metal plate with a long dent parallel to the edge and a series of weld dents closer to the edge](images/wp/weld_join1.jpg "Panasonic's RF safe welding join")
+![Metal plate with a long dent parallel to the edge and a series of weld dents closer to the edge](/posts/images/wp/weld_join1.jpg "Panasonic's RF safe welding join")
 <p class="wp-caption-text">Panasonic's RF safe welding join
 
 
@@ -97,7 +97,7 @@ I am yet to settle on the hinges, latch or interlock mechanisms. At the moment I
 
 
 <!-- TODO: Show 310px width, show or format caption -->
-![Pencil sketch of the lower right corner of each layer showing their assembly and relative size](images/wp/door_sketch1.jpg "Pencil sketch of door sandwich")
+![Pencil sketch of the lower right corner of each layer showing their assembly and relative size](/posts/images/wp/door_sketch1.jpg "Pencil sketch of door sandwich")
 <p class="wp-caption-text">Pencil sketch of door sandwich
 
 

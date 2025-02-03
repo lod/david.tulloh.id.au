@@ -7,9 +7,7 @@ tags:
   - project management
   - funding
 ---
-		
-
-       
+ 
 ### Update
 
 So I really didn't do much this week. I have always suffered from occasional days where my productivity drops off and I achieve virtually nothing. I found that working solo this was much harder to arrest and control.
