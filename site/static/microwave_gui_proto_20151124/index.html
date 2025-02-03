@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Content-Language" content="en">
+		<meta name="viewport" content="width=480">
+
+		<title>Microwave Start page</title>
+
+		<link rel="stylesheet" href="bootstrap.min.css" integrity="" crossorigin="anonymous">
+		<script src="jquery-2.1.4.min.js" integrity="" crossorigin="anonymous"></script>
+		<script src="bootstrap.min.js" integrity="" crossorigin="anonymous"></script>
+
+		<link href="start.css" rel="stylesheet" type="text/css">
+
+	</head>
+	<body>
+		<!-- Microwave screen is 480x800 pixels -->
+		<div id="microwave_container">
+			<div id="time_column" class="left_col">
+				<div id="time_heading">Time</div>
+				<canvas id="time_data" width="80px" height="770px"></canvas>
+			</div>
+			<div id="center_column">
+				<div id="thermal_image">
+					<!-- <img src="thermal.png"> -->
+					<iframe src="snapshot.html" style="overflow: hidden; height: 294px;" seamless="seamless" scrolling="no" data-ruffle-polyfilled=""></iframe>
+					<script>
+						// There are silly CSS games that can be played to set the height
+						// This is cleaner and sets sizing properly for inside the iframe
+						$(function() {
+							var iframe = $('#thermal_image iframe');
+							iframe.css({'height':iframe.width()+'px'});
+						});
+					</script>
+				</div>
+				<div id="details">
+					<span id="detail_heading">Currently:</span>
+					<span id="temp">12°</span>
+					<span id="weight">300g</span>
+				</div>
+				<a class="btn btn-mw qcook" href="qcook_target.html?script=boil">
+					Boil liquid - 100°
+				</a>
+				<a class="btn btn-mw qcook" href="qcook_target.html?script=heat">
+						Heat liquid - 80°
+				</a>
+				<div id="extras">
+					<a href="settings.html" id="menu_settings" class="btn btn-mw">
+						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+						<span class="sr-only">Settings</span>
+					</a>
+					<a href="recipies.html" id="menu_recipies" class="btn btn-mw">
+						<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+						<span class="sr-only">Recipies</span>
+					</a>
+					<a href="qcook.html" id="menu_qCooks" class="btn btn-mw">
+						<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+						<span class="sr-only">Quick cooks</span>
+					</a>
+				</div>
+			</div>
+			<div id="temp_column" class="right_col">
+				<div id="temp_heading">Temp</div>
+				<canvas id="temp_data" width="80px" height="770px"></canvas>
+			</div>
+		</div>
+
+		<script src="time_selection_bar.js"></script>
+		<script src="temperature_selection_bar.js"></script>
+	
+</body></html>
+
+<!--
+     FILE ARCHIVED ON 06:19:08 Nov 03, 2022 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 05:38:32 Jan 25, 2025.
+-->

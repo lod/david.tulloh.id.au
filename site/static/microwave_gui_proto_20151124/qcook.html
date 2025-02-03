@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta http-equiv="Content-Language" content="en">
+		<meta name="viewport" content="width=480">
+
+		<title>Microwave Start page</title>
+
+		<link rel="stylesheet" href="bootstrap.min.css" integrity="" crossorigin="anonymous">
+		<script src="jquery-2.1.4.min.js" integrity="" crossorigin="anonymous"></script>
+		<script src="bootstrap.min.js" integrity="" crossorigin="anonymous"></script>
+
+		<script src="angular.min.js"></script>
+
+		<script src="sly-1.6.1.js"></script>
+
+		<link rel="stylesheet" href="font-awesome.min.css">
+
+		<link href="start.css" rel="stylesheet" type="text/css">
+
+	</head>
+	<body ng-app="qcook-app" class="ng-scope">
+		<!-- Microwave screen is 480x800 pixels -->
+		<div id="microwave_container">
+			<div id="left_nav_column" class="left_col">
+				<ul class="nav nav-pills nav-stacked" role="tablist">
+					<li role="presentation" class="active">
+						<a class="btn btn-mw" href="#recommended" aria-controls="recommended" role="tab" data-toggle="tab">
+							<!-- Could also use fa-thumbs-o-up for recommended -->
+							<span class="fa fa-check-square-o" aria-hidden="true"></span>
+							<span class="sr-only">Recommended</span>
+						</a>
+					</li>
+					<li role="presentation">
+						<a href="#favourites" class="btn btn-mw" aria-controls="favourites" role="tab" data-toggle="tab">
+							<span class="fa fa-star-o" aria-hidden="true"></span>
+							<span class="sr-only">Favourites</span>
+						</a>
+					</li>
+					<li role="presentation">
+						<a href="#alphabetical" class="btn btn-mw" aria-controls="alphabetical" role="tab" data-toggle="tab">A-Z</a>
+					</li>
+					<li class="spacer" aria-hidden="true"></li>
+					<li role="presentation"><a href="#new" class="btn btn-mw" aria-controls="new" role="tab" data-toggle="tab"><span class="fa fa-plus" aria-hidden="true"></span><span class="sr-only">New</span></a></li>
+					<li role="presentation"><a href="#download" class="btn btn-mw" aria-controls="download" role="tab" data-toggle="tab"><span class="fa fa-download" aria-hidden="true"></span><span class="sr-only">Download</span></a></li>
+					<li class="spacer" aria-hidden="true"></li>
+					<li role="presentation"><a class="btn btn-mw" href="index.html"><span class="fa fa-home" aria-hidden="true"></span><span class="sr-only">Home</span></a></li>
+				</ul>
+			</div>
+			<div id="center_column">
+				<h1>Quick cook</h1>
+				<div id="qcook_tabcontainer" class="tab-content">
+					<div role="tabpanel" class="tab-pane active ng-scope" id="recommended" ng-controller="qcook">
+						<h2>Recomended</h2>
+						<ul>
+			<li ng-repeat="entry in entries | orderBy:'-score' | limitTo:5">
+								<a class="btn btn-default" ng-href="qcook_target.html?script={{entry.key}}">
+									<span class="title">{{entry.title}}</span>
+									<span class="score">{{entry.score}}</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div role="tabpanel" class="tab-pane ng-scope" id="favourites" ng-controller="qcook">
+						<h2>Favourites</h2>
+						<ul>
+							<li ng-repeat="entry in entries | filter:{favourite:true}:true">
+								<a class="btn btn-default" ng-href="qcook_target.html?script={{entry.key}}">
+									<span class="title">{{entry.title}}</span>
+									<span class="score">{{entry.score}}</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div role="tabpanel" class="tab-pane ng-scope" id="alphabetical" ng-controller="qcook">
+						<h2>Alphabetical</h2>
+						<div id="scroll_bg" class="noselect">
+							ABCDEFGHIJKLMNOPQRSTUVWXYZ
+						</div>
+						<div class="scrollbar">
+							<div class="handle" style="transform: translateZ(0px) translateY(0px);">
+								<div class="mousearea"></div>
+							</div>
+						</div>
+						<div id="alphabetical_list" class="frame" style="overflow: hidden;">
+						<ul class="slidee" style="transform: translateZ(0px);">
+							<li ng-repeat="entry in entries | orderBy:'title'">
+								<a class="btn btn-default" ng-href="qcook_target.html?script={{entry.key}}">
+									<span class="title">{{entry.title}}</span>
+									<span class="score">{{entry.score}}</span>
+								</a>
+							</li>
+						</ul>
+						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="new">
+						<h2>New</h2>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="download">
+						<h2>Download</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			$('.nav-tabs a').click(function(e) {
+				e.preventDefault();
+				$(this).tab('show');
+			});
+		</script>
+		<script>
+			var options = {
+				/* itemNav: 'basic', */
+				smart: 0,
+				activateOn: 'click',
+				mouseDragging: 1, // Click-dragging on frame
+				touchDragging: 1, // Touch-dragging on frame
+				releaseSwing: 1,
+				scrollBar: $('.scrollbar'),
+				scrollBy: 1,
+				dragHandle: 1, // Click-dragging on scrollbar handle
+				dynamicHandle: 0,
+			};
+			var frame = new Sly('#alphabetical_list', options).init();
+
+			$('a[href="#alphabetical"]').on('shown.bs.tab', function(e) {
+				frame.reload();
+			});
+		</script>
+		<script>
+			var myApp = angular.module('qcook-app',[]);
+			myApp.controller('qcook', ['$scope', function($scope) {
+				$scope.entries = [
+					{
+						"title"       : "Feed me a stray cat",
+						"key"         : "feed",
+						"score"       : 23,
+						"favourite" : true,
+					},
+					{
+						"title"       : "Boil liquid - 100°",
+						"key"         : "boil",
+						"score"       : 51,
+						"favourite"   : false,
+					},
+					{
+						"title"       : "Defrost",
+						"key"         : "defrost",
+						"score"       : 42,
+						"favourite"   : false,
+					},
+					{
+						"title"       : "Heat liquid - 80°",
+						"key"         : "heat",
+						"score"       : 51,
+						"favourite"   : false,
+					},
+					{
+						"title"       : "Popcorn",
+						"key"         : "popcorn",
+						"score"       : 12,
+						"favourite"   : false,
+					},
+					{
+						"title"       : "Moose",
+						"key"         : "mmm",
+						"score"       : 12,
+						"favourite"   : false,
+					},
+					{
+						"title"       : "Moose jerky",
+						"key"         : "mmm_twitchy",
+						"score"       : 12,
+						"favourite"   : false,
+					},
+					{
+						"title"       : "Moose souflet",
+						"key"         : "mmm_rises",
+						"score"       : 12,
+						"favourite"   : false,
+					},
+					{
+						"title"       : "Moose soup",
+						"key"         : "mmm_bits",
+						"score"       : 12,
+						"favourite"   : false,
+					},
+					{
+						"title"       : "Moose tail",
+						"key"         : "mmm_flies",
+						"score"       : 12,
+						"favourite"   : false,
+					},
+					{
+						"title"       : "Yak",
+						"key"         : "yuk",
+						"score"       : 12,
+						"favourite"   : false,
+					},
+					{
+						"title"       : "Zebra",
+						"key"         : "stripy",
+						"score"       : 12,
+						"favourite"   : false,
+					}
+
+				];
+				console.log($scope);
+			}]);
+		</script>
+	
+
+
+
+
+</body></html>
+<!--
+     FILE ARCHIVED ON 06:26:59 Nov 03, 2022 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 05:54:22 Jan 25, 2025.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+-->
+<!--
+playback timings (ms):
+  captures_list: 0.484
+  exclusion.robots: 0.019
+  exclusion.robots.policy: 0.01
+  esindex: 0.01
+  cdx.remote: 33.245
+  LoadShardBlock: 157.805 (3)
+  PetaboxLoader3.datanode: 124.74 (5)
+  PetaboxLoader3.resolve: 68.191
+  load_resource: 82.668 (2)
+-->
