@@ -32,19 +32,21 @@
     "theme": "hyde"
   },
   "devDependencies": {
-    "@11ty/eleventy": "2.0.0",
+    "@11ty/eleventy": "3.0.0",
+    "@11ty/eleventy-img": "6.0.1",
     "concurrently": "^7.6.0",
     "dayjs": "^1.11.7",
     "dotenv": "^16.0.3",
     "fast-glob": "^3.2.12",
     "highlight.js": "^11.7.0",
     "html-minifier": "^4.0.0",
+    "liquidjs": "10.20.2",
     "markdown-it": "^13.0.1",
     "markdown-it-attrs": "^4.1.6",
     "markdown-it-eleventy-img": "^0.10.0",
     "markdown-it-emoji": "^2.0.2",
     "markdown-it-link-attributes": "^4.0.1",
-    "postcss": "^8.4.21",
+    "postcss": "^8.4.40",
     "postcss-cli": "^10.1.0",
     "postcss-csso": "^6.0.1",
     "postcss-import": "^15.1.0",
@@ -52,6 +54,9 @@
   },
   "dependencies": {
     "@fontsource/abril-fatface": "^4.5.9",
-    "@fontsource/pt-sans": "^4.5.11"
+    "@fontsource/pt-sans": "^4.5.11",
+    "@img/sharp-linux-x64": "^0.33.4",
+    "npm": "^10.8.2",
+    "pnpm": "^9.6.0"
   }
 }

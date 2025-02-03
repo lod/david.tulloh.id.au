@@ -59,15 +59,21 @@ html {
 }
 
 body {
-  color: #515151;
-  background-color: #fff;
+  /* color: #515151; */
+  /* background-color: #fff; */
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 }
 
+/* My dark mode */
+body {
+  background-color: #2a2b2e;
+  color: #F5F5F5;
+}
+
 /* No `:visited` state is required by default (browsers will use `a`) */
 a {
-  color: #268bd2;
+  color: #F5F5F5;
   text-decoration: none;
 }
 a strong {
@@ -84,7 +90,6 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: .5rem;
   font-weight: bold;
   line-height: 1.25;
-  color: #313131;
   text-rendering: optimizeLegibility;
 }
 h1 {
@@ -110,7 +115,7 @@ p {
 }
 
 strong {
-  color: #303030;
+  color: #FFF;
 }
 
 
@@ -139,7 +144,6 @@ hr {
 abbr {
   font-size: 85%;
   font-weight: bold;
-  color: #555;
   text-transform: uppercase;
 }
 abbr[title] {
@@ -155,8 +159,8 @@ pre {
 code {
   padding: .25em .5em;
   font-size: 85%;
-  color: #bf616a;
-  background-color: #f9f9f9;
+  background-color: #000;
+  color: #FFF;
   border-radius: 3px;
 }
 pre {
@@ -170,7 +174,6 @@ pre {
   white-space: pre-wrap;
   word-break: break-all;
   word-wrap: break-word;
-  background-color: #f9f9f9;
 }
 pre code {
   padding: 0;
@@ -214,7 +217,6 @@ pre code {
 blockquote {
   padding: .5rem 1rem;
   margin: .8rem 0;
-  color: #7a7a7a;
   border-left: .25rem solid #e5e5e5;
 }
 blockquote p:last-child {
@@ -248,7 +250,7 @@ th {
 }
 tbody tr:nth-child(odd) td,
 tbody tr:nth-child(odd) th {
-  background-color: #f9f9f9;
+  /* background-color: #f9f9f9; */
 }
 
 
@@ -337,7 +339,7 @@ tbody tr:nth-child(odd) th {
 .page-title,
 .post-title,
 .post-title a {
-  color: #303030;
+  color: #FFF;
 }
 .page-title,
 .post-title {
@@ -349,7 +351,7 @@ tbody tr:nth-child(odd) th {
   display: block;
   margin-top: -.5rem;
   margin-bottom: 1rem;
-  color: #9a9a9a;
+  color: #CCC;
 }
 
 /* Related posts */
@@ -367,15 +369,16 @@ tbody tr:nth-child(odd) th {
 }
 .related-posts li small {
   font-size: 75%;
-  color: #999;
+  color: #CCC;
 }
 .related-posts li a:hover {
-  color: #268bd2;
+  color: #F42512;
   text-decoration: none;
 }
 .related-posts li a:hover small {
   color: inherit;
 }
+
 
 
 /*

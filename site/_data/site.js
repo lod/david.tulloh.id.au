@@ -1,7 +1,7 @@
 module.exports = {
-  title: "ECBS",
-  tagline: "Eleventy Classic Blog Starter",
-  url: process.env.URL || 'https://ecbs.com',
+  title: "David",
+  tagline: "An exercise in motivation",
+  url: process.env.URL || 'https://david.tulloh.id.au',
   time: Date.now(),
   locale: "en-GB",
 };

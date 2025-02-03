@@ -1,6 +1,3 @@
-@import "./font-abril-fatface.css";
-@import "./font-pt-sans.css";
-
 @import "./poole.css";
 @import "./hyde.css";
 
@@ -28,3 +25,23 @@ code {color: #b04751;}        /* darken(#bf616a, 8%) */
 /* As base-16 colors had to be reset */
 .theme-base-0b .sidebar {background-color: #690900;}
 .theme-base-0b .content a, .theme-base-0b .related-posts li a:hover {color: #690900;}
+
+/* Dark mode */
+.theme-base-0b .content a, .theme-base-0b .related-posts li a:hover {
+  color: #F42512;
+}
+
+/* pagination line */
+.compact-pagination > * {
+  display: inline;
+}
+.compact-pagination li {
+  display: inline;
+}
+.compact-pagination ol {
+  white-space: nowrap;
+  padding-left: 1em;
+}
+
+.content {
+}

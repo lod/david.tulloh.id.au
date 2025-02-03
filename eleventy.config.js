@@ -1,4 +1,5 @@
 require('dotenv').config();
+// const { eleventyImageTransformPlugin } = require("@11ty/eleventy-img");
 
 const
   glob = require('fast-glob'),
@@ -9,11 +10,12 @@ const
 
 
 module.exports = (eleventyConfig) => {
+  // eleventyConfig.addPlugin(eleventyImageTransformPlugin);
 
   // Engine: Markdown & plugins
   const Markdown = require('markdown-it')({
     html: true,         // Enable HTML tags in source
-    breaks: true,       // Convert '\n' in paragraphs into <br>
+    breaks: false,       // Convert '\n' in paragraphs into <br>
     linkify: true,      // Autoconvert URL-like text to links
     typographer: true,  // Enable some language-neutral replacement + quotes beautification
     // quotes: ['«\xA0', '\xA0»', '‹\xA0', '\xA0›']
@@ -83,6 +85,23 @@ module.exports = (eleventyConfig) => {
   // Collections
   eleventyConfig.addCollection('pages', (collectionApi) => collectionApi.getFilteredByGlob('./site/pages/**/*.md'));
   eleventyConfig.addCollection('posts', (collectionApi) => collectionApi.getFilteredByGlob('./site/posts/**/*.md'));
+  eleventyConfig.addCollection("categories", function(collectionApi) {
+    let categories = new Set();
+    let posts = collectionApi.getFilteredByTag('post');
+    posts.forEach(p => {
+        let cats = p.data.categories;
+        cats.forEach(c => categories.add(c));
+    });
+    return Array.from(categories);
+});
+    eleventyConfig.addCollection('tagList', collection => {
+        const tagsSet = new Set();
+        collection.getAll().forEach(item => {
+            if (!item.data.tags) return;
+            item.data.tags.filter(tag => !['posts', 'all'].includes(tag)).forEach(tag => tagsSet.add(tag));
+        });
+        return Array.from(tagsSet).sort();
+    });
 
 
   if (process.env.NODE_ENV === 'production') {
@@ -104,17 +123,24 @@ module.exports = (eleventyConfig) => {
 
 
   // Passthrough
-  if (process.env.NODE_ENV === 'production') eleventyConfig.addPassthroughCopy({ 'site/static': '.' }); // Only one per destination folder, next is better for dev
-  eleventyConfig.addPassthroughCopy({ [`site/_themes/${theme}/static`]: '.' });
+  // if (process.env.NODE_ENV === 'production') eleventyConfig.addPassthroughCopy({ 'site/static': '.' }); // Only one per destination folder, next is better for dev
+  eleventyConfig.addPassthroughCopy({ 'site/static': '.' }); // Only one per destination folder, next is better for dev
+  // eleventyConfig.addPassthroughCopy({ [`site/_themes/${theme}/static/**`]: '.' });
   eleventyConfig.addPassthroughCopy({ 'node_modules/@fontsource/{abril-fatface,pt-sans}/files/{abril-fatface,pt-sans}-latin-{400,700}*.woff2': 'css/files' });
   eleventyConfig.setServerPassthroughCopyBehavior('passthrough');
 
   // Globals
   eleventyConfig.addGlobalData('isProduction', process.env.NODE_ENV === 'production');
 
+  eleventyConfig.setFrontMatterParsingOptions({
+    excerpt: true,
+    // Optional, default is "---"
+    excerpt_separator: '<!-- more -->'
+  });
+
 
   return {
-    templateFormats: ['md', 'njk'],
+    templateFormats: ['md', 'njk', 'liquid'],
     markdownTemplateEngine: 'njk',
 
     dir: {
