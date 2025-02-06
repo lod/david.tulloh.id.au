@@ -84,7 +84,7 @@ I just haven't found anyone who sells them premade. Panasonic probably another o
 
 The screen is actually looking fairly good. I haven't received the samples to try out but that is fairly low risk and should happen before the end of the month. I have a solution and enough information to estimate the cost solution, which is all I really need at this point.
 
-<iframe width="100%" height="800px" src="/microwave_plan/index.html?date=20150307"></iframe>
+<iframe title="Gantt chart" width="100%" height="800px" src="/microwave_plan/index.html?date=20150307"></iframe>
 
 <a href="/microwave_plan/index.html?date=20150307">View full screen</a>
 

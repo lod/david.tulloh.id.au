@@ -59,7 +59,42 @@ html {
   color: rgba(255,255,255,.5);
   background-color: #202020;
 }
+
+.sidebar {
+  padding: 0 1rem;
+}
+.sidebar-nav {
+  margin-bottom: 0; /* mobile, override for desktop */
+  display: flex;
+  width: 100%;
+}
+
+.sidebar-nav-item {
+  flex-grow: 1;
+}
+
+.sidebar-about {
+  display: none;
+}
+
+.sidebar-about > h1 {
+  margin: 0;
+}
+
+.content {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+h3.my-pagination {
+}
+
+.post:last-child {
+  margin-bottom: 0;
+}
+
 @media (min-width: 48em) {
+  /* Wide screen */
   .sidebar {
     position: fixed;
     top: 0;
@@ -67,6 +102,24 @@ html {
     bottom: 0;
     width: 18rem;
     text-align: left;
+  }
+  /* TODO: other min-width */
+  .sidebar-nav {
+    margin-bottom: 1rem;
+	flex-direction: column;
+  }
+
+  .sidebar-about {
+    display: block;  /* hidden for mobile */
+  }
+
+  .sidebar-about > h1 {
+    margin-bottom: 0.5rem;  /* shrunk on mobile, restore for desktop */
+  }
+
+  .content {  /* Restore padding for desktop */
+    padding-top: 4rem;
+    padding-bottom: 4rem;
   }
 }
 
@@ -122,8 +175,8 @@ a.sidebar-nav-item:focus {
  */
 
 .content {
-  padding-top:    4rem;
-  padding-bottom: 4rem;
+  padding-top:    0rem;
+  padding-bottom: 0rem;
 }
 
 @media (min-width: 48em) {
@@ -131,6 +184,8 @@ a.sidebar-nav-item:focus {
     max-width: 38rem;
     margin-left: 20rem;
     margin-right: 2rem;
+    padding-top:    4rem;
+    padding-bottom: 4rem;
   }
 }
 

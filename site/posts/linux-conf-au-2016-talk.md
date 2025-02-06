@@ -9,7 +9,7 @@ tags:
 
 ---
 
-<video controls width="100%" poster="/images/vlcsnap-2016-02-24-16h06m02s115.png"><source src="http://mirror.linux.org.au/linux.conf.au/2016/04_Thursday/D4.303_Costa_Theatre/Linux_driven_microwave.webm" type="video/webm"><iframe width="560" height="315" src="https://www.youtube.com/embed/R3DADx5z-XY" frameborder="0" allowfullscreen></iframe></video><br/>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/R3DADx5z-XY?si=Qx6bIfMDCwf0GJvE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 <a download href="http://mirror.linux.org.au/linux.conf.au/2016/04_Thursday/D4.303_Costa_Theatre/Linux_driven_microwave.webm">Download</a> or <a href="https://www.youtube.com/watch?v=R3DADx5z-XY">Watch on Youtube</a>
 

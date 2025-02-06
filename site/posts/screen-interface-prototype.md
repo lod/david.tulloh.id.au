@@ -33,7 +33,7 @@ I would really appreciate it if people would play and give feedback. It is desig
 <a href="/microwave_gui_proto_20151124/index.html" target="_blank" style="text-align: right; display: block;">View in new tab/window</a>
 
 <div style="margin: 0 auto;">
-<iframe id="gui-prototype-proto_iframe" src="/microwave_gui_proto_20151124/index.html" width="481" height="800" style=" transform: scale(0.75);       transform-origin: 0 0;        -ms-zoom: 0.75;        -moz-transform: scale(0.75);        -moz-transform-origin: 0 0;        -o-transform: scale(0.75);        -o-transform-origin: 0 0;        -webkit-transform: scale(0.75);        -webkit-transform-origin: 0 0;  display: block; margin: 0 auto; overflow:hidden; border: none; "></iframe>
+<iframe id="gui-prototype-proto_iframe" title="Microwave GUI prototype" src="/microwave_gui_proto_20151124/index.html" width="481" height="800" style=" transform: scale(0.75);       transform-origin: 0 0;        -ms-zoom: 0.75;        -moz-transform: scale(0.75);        -moz-transform-origin: 0 0;        -o-transform: scale(0.75);        -o-transform-origin: 0 0;        -webkit-transform: scale(0.75);        -webkit-transform-origin: 0 0;  display: block; margin: 0 auto; overflow:hidden; border: none; "></iframe>
 </div>
 <script>
 jQuery(function(){

@@ -8,8 +8,8 @@ article img {width:100%; height:auto;}
 
 /* Poole & Hyde default CSS does not pass today's lighthouse tests */
 
-a {color: #1a6091;}                             /* darken(#268bd2, 15%); */
-.post-date {color: #747474; font-size: 90%;}    /* darken(#9a9a9a, 15%); */
+a {color: #5fc1fd }                             /* darken(#268bd2, 15%); */
+.post-date {color: #929292; font-size: 90%;}    /* darken(#9a9a9a, 15%); */
 .related-posts li small {color: #747474;}
 
 .sidebar-nav-item {line-height: 2.75;}
@@ -20,16 +20,18 @@ a {color: #1a6091;}                             /* darken(#268bd2, 15%); */
 /* WCAG2AA sidebar & example-content page */
 .sidebar {color: rgb(255, 255, 255, 0.7);}
 blockquote {color: #666666;}  /* darken(#7a7a7a, 8%) */
-code {color: #b04751;}        /* darken(#bf616a, 8%) */
-
-/* As base-16 colors had to be reset */
-.theme-base-0b .sidebar {background-color: #690900;}
-.theme-base-0b .content a, .theme-base-0b .related-posts li a:hover {color: #690900;}
+/* code {color: #b04751;}    */    /* darken(#bf616a, 8%) */
 
 /* Dark mode */
+.theme-base-0b .sidebar {background-color: #025D92}
 .theme-base-0b .content a, .theme-base-0b .related-posts li a:hover {
-  color: #F42512;
+  color: #5fc1fd;
 }
+
+a:focus, a:hover {
+	text-decoration: underline;
+}
+
 
 /* pagination line */
 .compact-pagination > * {
@@ -37,10 +39,12 @@ code {color: #b04751;}        /* darken(#bf616a, 8%) */
 }
 .compact-pagination li {
   display: inline;
+  padding-left: 1em;  /* touch target spacing */
 }
 .compact-pagination ol {
   white-space: nowrap;
-  padding-left: 1em;
+  padding-left: 0;
+  display: inline;  /* same line as the heading */
 }
 
 .content {

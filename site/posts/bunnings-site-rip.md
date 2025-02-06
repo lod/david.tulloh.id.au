@@ -5,8 +5,6 @@ tags: ["ses", "perl", "rip"]
 #spell-checker: enable
 ---
 
-# Bunnings site rip
-
 Some time ago I foolishly volunteered to perform a site rip of https://www.bunnings.com.au/ for the local SES group I am a member of. This was to allow our accountant member to more accurately assign a value to our assets. I understand this is an important thing for an accountant.
 
 I have done a number of site rips in the past, the Bunnings site is probably the most painful so far. The product pages are very complex for what they are.

@@ -105,7 +105,7 @@ jQuery(function(){
 	Loading &#8230;
 </div>
 
-<iframe id="single_pcb_iframe" border="0" name="iframe" width="550" height="230" scrolling="no" noresize frameborder="0"></iframe>
+<iframe id="single_pcb_iframe" title="Interactive PCB" border="0" name="iframe" width="550" height="230" scrolling="no" noresize frameborder="0"></iframe>
 
 My first attempt at a PCB was a two layered single sided PCB, it is functional but not optimized as I decided the approach was wrong and created a double sided PCB for manufacturing.
 
@@ -151,7 +151,7 @@ jQuery(function(){
 	Loading &#8230;
 </div>
 
-<iframe id="double_pcb_iframe" border="0" name="iframe" width="550" height="370" scrolling="no" noresize frameborder="0"></iframe>
+<iframe id="double_pcb_iframe" title="Interactive two sided PCB" border="0" name="iframe" width="550" height="370" scrolling="no" noresize frameborder="0"></iframe>
 
 I started this board more professionally, defining a 3cm by 2cm board with M2 holes on each corner. It was a little bit of a struggle to get everything to fit nicely but that probably means it was the correct size.
 

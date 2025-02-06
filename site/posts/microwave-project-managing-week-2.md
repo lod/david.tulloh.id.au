@@ -24,5 +24,5 @@ tags:
 <p>Worth mentioning is the MLX90620, my third option. This was used by the IR-Blue project, one of the early Kickstarted infrared phone products. The sensor produces a 16&#215;4 pixel array with a temperature range up to 300 &deg; C.  However at $87 USD per unit it sits in an uncomfortable space between the two other products, better than the Grid-Eye but nowhere near as good as the Seek Thermal. I may revisit it if the other two don't work out.</p>
 <h3>Display</h3>
 <p>I was hoping to find one or two options for the display this week but didn't get around to it.</p>
-<p><iframe width="100%" height="600px" src="/microwave_plan/index.html?date=20150209"></iframe></p>
+<p><iframe title="Gantt chart" width="100%" height="600px" src="/microwave_plan/index.html?date=20150209"></iframe></p>
 <p><a href="/microwave_plan/index.html?date=20150209">View full screen</a></p>

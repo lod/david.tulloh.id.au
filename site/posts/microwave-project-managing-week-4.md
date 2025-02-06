@@ -48,7 +48,7 @@ As an interesting side note the current Panasonic designs with mode stirrers hav
 
 I also spent a considerable period of time this week learning about companies, talking to accountants and reading exciting government websites. Trying to figure out if I start a company now, play on as a sole trader and start a company later or go with a company &amp; trust structure.  Currently leaning towards delaying the company founding but there are lots of little pros and cons to weigh up.
 
-<iframe width="100%" height="800px" src="/microwave_plan/index.html?date=20150220"></iframe>
+<iframe title="Gantt chart" width="100%" height="800px" src="/microwave_plan/index.html?date=20150220"></iframe>
 
 <a href="/microwave_plan/index.html?date=20150220">View full screen</a>
 

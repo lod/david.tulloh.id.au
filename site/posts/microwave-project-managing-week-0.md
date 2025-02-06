@@ -15,5 +15,5 @@ Below is the detailed timeline of phase one, establishing the project's viabilit
 
 I have actually detailed a fair bit of phases two and three as well but the program I am using to display the timeline struggles a bit with extensive content, I might fix it up some day.
 
-<p><iframe width="100%" height="600px" src="/microwave_plan/index.html?date=20150122"></iframe></p>
+<p><iframe title="Gantt chart" width="100%" height="600px" src="/microwave_plan/index.html?date=20150122"></iframe></p>
 <p><a href="/microwave_plan/index.html?date=20150122">View full screen</a></p>

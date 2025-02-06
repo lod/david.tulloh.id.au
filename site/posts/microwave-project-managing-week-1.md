@@ -20,5 +20,5 @@ tags:
 ## Inverters
 <p>The other main task was looking in to using inverter technology. This was less fun. Basically the technique is tied up with patents, primarily held by Panasonic.  The non-Panasonic inverter microwaves seem to be either licenced or rebadged Panasonics.</p>
 <p>Being able to buy the Panasonic guts would actually be ideal for me and seems like fairly standard practice in the industry.  Figuring out who to approach is not easy though, I have sent one email off and will see if it leads to a way in.</p>
-<p><iframe width="100%" height="600px" src="/microwave_plan/index.html?date=20150203"></iframe></p>
+<p><iframe title="Gantt chart" width="100%" height="600px" src="/microwave_plan/index.html?date=20150203"></iframe></p>
 <p><a href="/microwave_plan/index.html?date=20150203">View full screen</a></p>

@@ -38,4 +38,4 @@ I've also used a different program to generate the gantt chart with a different 
 ### Gantt Chart
 
 <a href="/microwave_plan/index.html">view fullscreen</a><br/>
-<iframe style="width:100%; height:100vh;" src="/microwave_plan/index.html">
+<iframe title="Gantt chart" style="width:100%; height:100vh;" src="/microwave_plan/index.html">

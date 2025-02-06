@@ -14,7 +14,7 @@ So I really didn't do much this week. I have always suffered from occasional day
 
 In the spirit of full disclosure it was more like two weeks. With a fairly sharp decline in the second half of week 4, the entire loss of week 5 and the first half of week 6. I had overrun set aside in the schedule, I had hoped that if it was needed it would be due to external factors&#8230; but it means the impact isn't as bad as it could have been.
 
-<iframe src="/microwave_plan/index.html?date=20150227" width="100%" height="800px"></iframe><br/>
+<iframe title="Gantt chart" src="/microwave_plan/index.html?date=20150227" width="100%" height="800px"></iframe><br/>
 <a href="/microwave_plan/index.html?date=20150227">View full screen</a>
 
 
