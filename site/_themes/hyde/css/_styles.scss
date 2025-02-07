@@ -1,5 +1,7 @@
-@import "./poole.css";
-@import "./hyde.css";
+/* @import "./_poole.scss"; */
+/* @import "./_hyde.scss"; */
+@use "./poole";
+@use "./hyde";
 
 @import "highlight.js/styles/github-dark.css";
 

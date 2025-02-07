@@ -1,9 +1,12 @@
 require('dotenv').config();
 
+
 const
   glob = require('fast-glob'),
   hljs = require('highlight.js'),
+  eleventySass = require("@11tyrocks/eleventy-plugin-sass-lightningcss");
 
+const
   projectName = process.env.npm_package_name,
   theme = process.env.npm_package_config_theme;
 
@@ -75,6 +78,10 @@ module.exports = async function(eleventyConfig) {
       },
   });
 
+  // CSS processor
+  // TODO: Want to process basic css too.  Is it worth having a non-min version?
+  eleventyConfig.addPlugin(eleventySass);
+
   // Engine: Nunjucks
   eleventyConfig.setNunjucksEnvironmentOptions({ trimBlocks: true, lstripBlocks: true });
 
@@ -142,7 +149,7 @@ module.exports = async function(eleventyConfig) {
   // if (process.env.NODE_ENV === 'production') eleventyConfig.addPassthroughCopy({ 'site/static': '.' }); // Only one per destination folder, next is better for dev
   eleventyConfig.addPassthroughCopy({ 'site/static': '.' }); // Only one per destination folder, next is better for dev
   // eleventyConfig.addPassthroughCopy({ [`site/_themes/${theme}/static/**`]: '.' });
-  eleventyConfig.addPassthroughCopy({ 'node_modules/@fontsource/{abril-fatface,pt-sans}/files/{abril-fatface,pt-sans}-latin-{400,700}*.woff2': 'css/files' });
+  // eleventyConfig.addPassthroughCopy({ 'node_modules/@fontsource/{abril-fatface,pt-sans}/files/{abril-fatface,pt-sans}-latin-{400,700}*.woff2': 'css/files' });
   eleventyConfig.setServerPassthroughCopyBehavior('passthrough');
 
   // Globals
