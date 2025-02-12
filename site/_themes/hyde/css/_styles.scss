@@ -76,3 +76,14 @@ img#flickr_roll {
     height: 100%;  // javascript may shrink it down
   }
 }
+
+.image_overlay_br {
+  position: relative;
+  float: right;
+  right: 0.5em;
+  bottom: 1.5em;
+  z-index: 100;
+  font-size: 20px;
+  color: #FFF;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
