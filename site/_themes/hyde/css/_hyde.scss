@@ -64,13 +64,23 @@ html {
   padding: 0 1rem;
 }
 .sidebar-nav {
-  margin-bottom: 0; /* mobile, override for desktop */
   display: flex;
   width: 100%;
+  margin-bottom: 1rem;
 }
 
 .sidebar-nav-item {
   flex-grow: 1;
+  display: block;
+  line-height: 1.75;
+}
+
+a.sidebar-nav-item:hover,
+a.sidebar-nav-item:focus {
+  text-decoration: underline;
+}
+.sidebar-nav-item.active {
+  font-weight: bold;
 }
 
 .sidebar-about {
@@ -79,6 +89,10 @@ html {
 
 .sidebar-about > h1 {
   margin: 0;
+}
+
+.sidebar-sticky {
+  width: 100%;
 }
 
 .content {
@@ -108,6 +122,9 @@ h3.my-pagination {
     margin-bottom: 1rem;
 	flex-direction: column;
   }
+  .sidebar-sticky {
+    width: auto;
+  }
 
   .sidebar-about {
     display: block;  /* hidden for mobile */
@@ -136,37 +153,12 @@ h3.my-pagination {
   font-size: 3.25rem;
 }
 
-/* Sidebar nav */
-.sidebar-nav {
-  margin-bottom: 1rem;
-}
-.sidebar-nav-item {
-  display: block;
-  line-height: 1.75;
-}
-a.sidebar-nav-item:hover,
-a.sidebar-nav-item:focus {
-  text-decoration: underline;
-}
-.sidebar-nav-item.active {
-  font-weight: bold;
-}
 
 /* Sticky sidebar
  *
  * Add the `sidebar-sticky` class to the sidebar's container to affix it the
  * contents to the bottom of the sidebar in tablets and up.
  */
-
-@media (min-width: 48em) {
-  .sidebar-sticky {
-    position: absolute;
-    right:  1rem;
-    bottom: 1rem;
-    left:   1rem;
-  }
-}
-
 
 /* Container
  *
