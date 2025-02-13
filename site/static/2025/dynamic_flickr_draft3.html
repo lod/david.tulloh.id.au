@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flickr Random Image Viewer - Draft 3</title>
+
+<style>
+* { margin: 0; padding: 0;}
+</style>
+<script>
 async function draw_random_image_from_flickr(target_img, api_key, user_id, album_id) {
 	try {
 		const response = await fetch(
@@ -57,3 +68,19 @@ async function draw_random_image_from_flickr(target_img, api_key, user_id, album
 		console.log("draw_random_image_from_flickr:", error.message || 'error without message detail');
 	}
 }
+
+  	async function load_img(target) {
+		const api_key = '796e426a98e426b387078fccd022ad3b';
+        const album_id = '72177720323695910';
+        const user_id = '202205040@N05';
+
+		console.log("Loading img; size:", target.width, target.height);
+
+        await draw_random_image_from_flickr(target, api_key, user_id, album_id);
+	}
+</script>
+</head>
+<body>
+	<img id="flickr_roll" src="" alt="Loading..." loading=lazy onerror="load_img(this)" style="width: 100vw; height:100vh; display: block;"/>
+</body>
+</html>

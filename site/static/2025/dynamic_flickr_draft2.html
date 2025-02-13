@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flickr Random Image Viewer - Draft 3</title>
+
+<style>
+* { margin: 0; padding: 0;}
+</style>
+<script>
+async function draw_random_image_from_flickr(target_img, api_key, user_id, album_id, target_width, target_height) {
+	try {
+		const response = await fetch(
+			`https://www.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=${api_key}&photoset_id=${album_id}&user_id=${user_id}&per_page=500&format=json&nojsoncallback=1&extras=o_dims,url_o`
+		);
+
+		const photolist_resp = await response.json();
+
+		if (photolist_resp.stat !== 'ok') {
+			throw new Error(photolist_resp.message || 'Failed to load album');
+		}
+
+		const photos = photolist_resp.photoset.photo;
+		if (!photos.length) {
+			throw new Error('No photos found in this album');
+		}
+
+		// Select a random photo
+		const photo = photos[Math.floor(Math.random() * photos.length)];
+		const sizing = get_closest_size(target_width, target_height, photo.width_o, photo.height_o);
+		console.log(sizing);
+
+		// Update the image URL
+		// Use clone/replace to update out of DOM - single redraw
+		clone = target_img.cloneNode(true);
+		clone.onerror = "";  // only update once, prevent loops
+		if (sizing.key == "o") {
+			clone.src = photo.url_o;  // special secret
+		} else {
+			clone.src = `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_${sizing.key}.jpg`;
+		}
+		clone.alt = photo.title;
+		clone.style.height = `${sizing.height}px`;
+		clone.style.width = `${sizing.width}px`;
+		target_img.replaceWith(clone);  // Single redraw
+	} catch (error) {
+		console.log("draw_random_image_from_flickr:", error.message || 'error without message detail');
+	}
+}
+
+function get_closest_size(target_width, target_height, width_o, height_o) {
+	/* Image sizing: https://www.flickr.com/services/api/misc.urls.html
+		* size is set via the longest edge
+		*  s    thumbnail    75    cropped square
+		*  q    thumbnail    150    cropped square
+		*  t    thumbnail    100
+		*  m    small    240
+		*  n    small    320
+		*  w    small    400
+		*  (none)    medium    500
+		*  z    medium    640
+		*  c    medium    800
+		*  b    large    1024
+		*  ... bigger options trimmed
+		*  o    original    arbitrary
+		*/
+	const sizing = {
+		100: "t",
+		240: "m",
+		320: "n",
+		400: "w",
+		// 500: "",  // For this to work you need to drop the _ too, just disable for now
+		640: "z",
+		800: "c",
+		1024: "b",
+	};
+
+	const size_opts = (new Uint32Array(Object.keys(sizing))).sort().reverse()
+
+	o_ratio = width_o/height_o;  // >1 is landscape, 1.3 is common
+	t_ratio = target_width/target_height;
+
+	// Sizing is based on original longest dimension, our constrained is determined by the ratios
+	if (o_ratio < t_ratio) {
+		// our sizing is height controlled
+		if (o_ratio > 1) {
+			// selection based on width
+			target = target_height * o_ratio;
+		} else {
+			// selection based on height
+			target = target_height;
+		}
+	} else {
+		// our sizing is width controlled
+		if (o_ratio > 1) {
+			// selection based on width
+			target = target_width;
+		} else {
+			// selection dimension is height, use ratio to convert width
+			target = target_width / o_ratio;
+		}
+	}
+
+	console.log("sizing w/h", `orig ${width_o}/${height_o} = ${o_ratio}`, `target ${target_width}/${target_height} = ${t_ratio}`, `${o_ratio < t_ratio ? "height": "width"} controlled`, `selection based on ${o_ratio > 1 ? "width": "height"}`, `target = ${target}`);
+
+	
+	// Original photo dimensions are in height_o and width_o
+	// We want the closest to the target width, but no greater than
+	// we start from the bigger values and work down
+	for (var opt of size_opts) {
+		if (opt <= target) {
+			console.log("Choice", opt, sizing[opt]);
+			break;
+		}
+	}
+
+	// no match, go for the smallest
+	// opt = size_opts[size_opts.length-1];
+	return {
+		"key": sizing[opt],
+		"height": o_ratio > 1 ? opt / o_ratio : opt,
+		"width": o_ratio > 1 ? opt : opt * o_ratio,
+	};
+}
+
+
+  	async function load_img(target) {
+		const api_key = '796e426a98e426b387078fccd022ad3b';
+        const album_id = '72177720323695910';
+        const user_id = '202205040@N05';
+
+		console.log("Loading img; size:", target.width, target.height);
+
+        await draw_random_image_from_flickr(target, api_key, user_id, album_id, target.width, target.height);
+	}
+</script>
+</head>
+<body>
+	<img id="flickr_roll" src="" alt="Loading..." loading=lazy onerror="load_img(this)" style="width: 25vw; height:25vh; display: block;"/>
+
+
+
+		<h2>Four images to test resizing and orientation, should be undistorted</h2>
+		<table>
+			<tr>
+				<td><img id="TL" height="200px" width="150px"/></td>
+				<td><img id="TR" height="200px" width="150px"/></td>
+			</tr>
+			<tr>
+				<td><img id="LL" height="150px" width="200px"/></td>
+				<td><img id="LR" height="150px" width="200px"/></td>
+			</tr>
+		</table>
+
+		<pre>
+		* Image sizing: https://www.flickr.com/services/api/misc.urls.html
+		* size is set via the longest edge
+		*  s    thumbnail    75    cropped square - unsupported
+		*  q    thumbnail    150    cropped square - unsupported
+		*  t    thumbnail    100
+		*  m    small    240
+		*  n    small    320
+		*  w    small    400
+		*  (none)    medium    500 - unsupported
+		*  z    medium    640
+		*  c    medium    800
+		*  b    large    1024
+		*  ... bigger options trimmed
+		*  o    original    arbitrary - unsupported
+		</pre>
+		<table style="display:block; overflow-x:scroll;">
+			<tr>
+				<td>2000x50 = t</td><td>2000x100 = t</td><td>2000x150 = t</td><td>2000x200 = t</td>
+				<td>2000x250 = m</td><td>2000x300 = n</td><td>2000x350 = n</td><td>2000x400 = w</td>
+				<td>2000x500 = w</td><td>2000x600 = w</td><td>2000x700 = z</td><td>2000x800 = c</td>
+				<td>2000x900 = c</td><td>2000x1000 = c</td><td>2000x1100 = b</td>
+			</tr>
+			<tr id="heightrow"></tr>
+			<tr></tr>
+			<tr>
+				<td>50x2000 = t</td><td>100x2000 = t</td><td>150x2000 = t</td><td>200x2000 = t</td>
+				<td>250x2000 = m</td><td>300x2000 = n</td><td>350x2000 = n</td><td>400x2000 = w</td>
+				<td>500x2000 = w</td><td>600x2000 = w</td><td>700x2000 = z</td><td>800x2000 = c</td>
+				<td>900x2000 = c</td><td>1000x2000 = c</td><td>1100x2000 = b</td>
+			</tr>
+			<tr id="widthrow"></tr>
+		</table>
+	</body>
+	<script>
+		function update_image(imgid, img_type) {
+			img = document.getElementById(imgid);
+			
+			img.src = `grid_test_${img_type}.png`;
+
+			if (img_type == "tall") {
+				width = 100;
+				height = 150;
+			} else {
+				width = 150;
+				height = 100;
+			}
+
+			const sizing = get_closest_size(img.width, img.height, width, height);
+			img.style.height = `${sizing.height}px`;
+			img.style.width = `${sizing.width}px`;
+			img.alt = sizing.key;
+
+		}
+        update_image("TL", "wide");
+        update_image("TR", "tall");
+        update_image("LL", "wide");
+        update_image("LR", "tall");
+
+		hrow = [];
+		wrow = [];
+		for (let dim = 50; dim < 400; dim += 50) {
+			hrow.push([2000, dim, get_closest_size(2000, dim, 2000, 2000).key]);
+			wrow.push([dim, 2000, get_closest_size(dim, 2000, 2000, 2000).key]);
+		}
+		for (let dim = 400; dim <= 1100; dim += 100) {
+			hrow.push([2000, dim, get_closest_size(2000, dim, 2000, 2000).key]);
+			wrow.push([dim, 2000, get_closest_size(dim, 2000, 2000, 2000).key]);
+		}
+
+		target_hrow = document.getElementById("heightrow");
+		for (const el of hrow) {
+			let td = document.createElement("td");
+			td.appendChild(document.createTextNode(el.join()))
+			target_hrow.appendChild(td);
+		}
+
+		target_wrow = document.getElementById("widthrow");
+		for (const el of wrow) {
+			let td = document.createElement("td");
+			td.appendChild(document.createTextNode(el.join()))
+			target_wrow.appendChild(td);
+		}
+
+
+	</script>
+</html>
