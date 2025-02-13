@@ -179,7 +179,7 @@ I ended up with this glorious masterpiece, it actually does work.
 
 <a href="/2025/dynamic_flickr_draft2.html">Sample and test page</a>
 
-```
+```javascript
 async function draw_random_image_from_flickr(target_img, api_key, user_id, album_id, target_width, target_height) {
   try {
     const response = await fetch(
@@ -326,9 +326,9 @@ I'm also providing an iframe below though, because it may change in the future.
 
 <iframe title="Example of dynamic image loading" src="/2025/dynamic_flickr_draft3.html" style="width: 100%; height: 20rem;"></iframe>
 
-TODO: Github link
+<a href="https://github.com/lod/david.tulloh.id.au/blob/cac567cf0bb72d0ea3d45df23d0adf39f66c4cc4/site/static/js/get_random_image_from_flickr.js">Github copy of get_random_image_from_flickr.js</a>
 
-```
+```javascript
 async function draw_random_image_from_flickr(target_img, api_key, user_id, album_id) {
   try {
     const response = await fetch(

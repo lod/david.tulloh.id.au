@@ -1,1 +1,5 @@
+// Should be able to do a pkg:highlight.js/scss/a11y-dark import
+// But it seems I'm not clever enough to make it work
+@use "./_themes/hyde/css/a11y-dark";
+
 @use "./_themes/hyde/css/styles";
