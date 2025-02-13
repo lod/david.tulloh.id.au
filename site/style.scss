@@ -3,3 +3,7 @@
 @use "./_themes/hyde/css/a11y-dark";
 
 @use "./_themes/hyde/css/styles";
+
+details {
+  margin: 0.5em 0;
+}

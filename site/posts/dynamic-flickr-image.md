@@ -4,7 +4,7 @@ date: 2025-02-12
 tags: ["javascript", "blog"]
 ---
 
-When I got to the end of putting together this blog it was looking a little bare, I felt in needed a nice photo. Not being able to decide on the photo to use, I thought a random photo from an album would be better... because choosing a albums worth of images would somehow be easier.
+When I got to the end of putting together this blog it was looking a little bare, I felt in needed a nice photo. Not being able to decide on the photo to use, I thought a random photo from an album would be better... because choosing a albums worth of images would somehow be easier (I consider the current photos placeholders, because I still haven't solved the actual original problem).
 
 Rather than self hosting this I, for some reason (probably because 11ty images are fiddly and annoying), decided to go with Flickr.  Flickr turned out to work really well.
 
@@ -30,7 +30,13 @@ The HTML wrapper around everything wasn't necessary but I can see why some folks
 
 Ultimately, a really good start.  I'd already found the API calls I needed, but it took a while, Claude had the correct calls immediately.  Having the basic functionality just done was fantastic, especially as my Javascript is super rusty.  There were bits I didn't like, I suspect I could have worked with Claude to sort those out. I ended up keeping about half of the generated Javascript in my second and third drafts, along with adding a bunch more.
 
-<a href="https://claude.site/artifacts/5a136213-523e-4eb3-bec9-9168993054fb">Generated Claude first draft</a>  (Claude won't let me embed it directly)
+<a href="/2025/dynamic_flickr_draft1.html">Standalone draft 1</a> or <a href="https://claude.site/artifacts/5a136213-523e-4eb3-bec9-9168993054fb">Claude hosted version</a>
+
+<details><summary>Embedded draft1 example</summary>
+<iframe title="Claude generated first draft" src="/2025/dynamic_flickr_draft1.html" style="width: 100%; height: 45rem; background-color: #EEE;"></iframe>
+</details>
+
+<details><summary>Generated code</summary>
 
 ```html
 <!DOCTYPE html>
@@ -163,6 +169,8 @@ Ultimately, a really good start.  I'd already found the API calls I needed, but 
 </html>
 ```
 
+</details>
+
 ## Second draft - The hard way
 
 I could have just taken the Javascript above, copy/pasted it in and been done.  It fulfilled the original requirements.  But that would be too easy, like any good project I needed to introduce some scope creep that would make it at least twice as hard.
@@ -177,7 +185,9 @@ The size of the target space also matters, it could be height constrained as in 
 
 I ended up with this glorious masterpiece, it actually does work.
 
-<a href="/2025/dynamic_flickr_draft2.html">Sample and test page</a>
+<a href="/2025/dynamic_flickr_draft2.html">Sample and test page (too big and ugly to embed)</a>
+
+<details><summary>My mutilated sizing code</summary>
 
 ```javascript
 async function draw_random_image_from_flickr(target_img, api_key, user_id, album_id, target_width, target_height) {
@@ -296,6 +306,8 @@ function get_closest_size(target_width, target_height, width_o, height_o) {
 }
 ```
 
+</details>
+
 ## Side mission - lazy loading
 
 I swear it isn't scope creep.
@@ -307,6 +319,25 @@ The classic way to handle this is probably to use `addEventListener("load",...` 
 This is actually a little better than the event listener in theory, as the lazy load should only happen as the image is required.  For example as you scroll down the image is loaded when it gets close to being visible. In practice for my usage the image is at the top/side and immediately visible.  I think replacing the image with the srcset version could retain the lazy aspect as long as the box size didn't change.
 
 The twist is to disable the onerror call during the javascript handling. In case the revised image can't be loaded I don't want it looping on me.
+
+<details><summary>Code</summary>
+
+```html
+<img id="flickr_roll" src="" alt="Loading..." loading=lazy onerror="load_img(this)"/>
+```
+
+```javascript
+    async function load_img(target) {
+        const api_key = '796e426a98e426b387078fccd022ad3b';
+        const album_id = '72177720323695910';
+        const user_id = '202205040@N05';
+
+        await draw_random_image_from_flickr(target, api_key, user_id, album_id);
+        // Draw sets target.onerror = "";
+    }
+```
+
+</details>
 
 ## Third draft - browser offload
 
@@ -327,6 +358,8 @@ I'm also providing an iframe below though, because it may change in the future.
 <iframe title="Example of dynamic image loading" src="/2025/dynamic_flickr_draft3.html" style="width: 100%; height: 20rem;"></iframe>
 
 <a href="https://github.com/lod/david.tulloh.id.au/blob/cac567cf0bb72d0ea3d45df23d0adf39f66c4cc4/site/static/js/get_random_image_from_flickr.js">Github copy of get_random_image_from_flickr.js</a>
+
+<details open><summary>The code</summary>
 
 ```javascript
 async function draw_random_image_from_flickr(target_img, api_key, user_id, album_id) {
@@ -390,6 +423,8 @@ async function draw_random_image_from_flickr(target_img, api_key, user_id, album
 }
 
 ```
+
+</details>
 
 
 ## Next steps
