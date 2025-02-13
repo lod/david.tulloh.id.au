@@ -1,20 +1,30 @@
   <script type="text/javascript" src="/js/get_random_image_from_flickr.js"></script>
   <script>
-  	async function load_img(target) {
-		const api_key = '796e426a98e426b387078fccd022ad3b';
+    async function load_img(target) {
+        const api_key = '796e426a98e426b387078fccd022ad3b';
         const album_id = '72177720323695910';
         const user_id = '202205040@N05';
 
         await draw_random_image_from_flickr(target, api_key, user_id, album_id);
-	}
+
+        // Can't figure out a CSS incantantion to get the flickr overlay to sit
+        // on the corner of the image.  At least not one that also works to get
+        // proper image sizing.  So I'm just going to "fix" it manually.
+        target = document.getElementById(target.id); // target element was replaced during image load
+        const overlay = target.nextElementSibling;
+        const rect = target.getBoundingClientRect();
+        // Image is horizontally centered in the space, x = margin left/right
+        // Want 10px from the right edge of the image
+        overlay.style.right = `${rect.x-10}px`;
+    }
   </script>
   <div role="region" class="sidebar">
-	<div class="container sidebar-img">
-	  <picture>
-	  <img id="flickr_roll" src="" alt="Loading..." loading=lazy onerror="load_img(this)"/>
-	  <a class="image_overlay_br" href="https://www.flickr.com/photos/202205040@N05/albums/72177720323695910">Flickr</a>
-	  </picture>
-	</div>
+    <div class="container sidebar-img">
+      <picture>
+      <img id="flickr_roll" src="" alt="Loading..." loading=lazy onerror="load_img(this)"/>
+      <a class="image_overlay_br" href="https://www.flickr.com/photos/202205040@N05/albums/72177720323695910">Flickr</a>
+      </picture>
+    </div>
 
     <div class="container sidebar-sticky">
       <div class="sidebar-about">
