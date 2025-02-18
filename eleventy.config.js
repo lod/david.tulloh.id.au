@@ -44,7 +44,12 @@ module.exports = async function(eleventyConfig) {
     })
     .use(require('markdown-it-attrs'), {
       allowedAttributes: ['id', 'class']
-    });
+    })
+	.use(require('markdown-it-image-figures'), {
+	  figcaption: "title",
+	  // link: true, What I want, but it doesn't work with the eleventy-img renaming
+	});
+
   /*
     .use(require('markdown-it-eleventy-img'), {
       imgOptions: {
