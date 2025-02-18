@@ -12,7 +12,6 @@ const
 
 
 module.exports = async function(eleventyConfig) {
-  // eleventyConfig.addPlugin(eleventyImageTransformPlugin);
   const { eleventyImageTransformPlugin } = await import("@11ty/eleventy-img");
 
   // Engine: Markdown & plugins
@@ -45,36 +44,20 @@ module.exports = async function(eleventyConfig) {
     .use(require('markdown-it-attrs'), {
       allowedAttributes: ['id', 'class']
     })
-	.use(require('markdown-it-image-figures'), {
-	  figcaption: "title",
-	  // link: true, What I want, but it doesn't work with the eleventy-img renaming
-	});
-
-  /*
-    .use(require('markdown-it-eleventy-img'), {
-      imgOptions: {
-        widths: [720, 1080, 1440, 1800],
-        urlPath: '/images/',
-        outputDir: (process.env.NODE_ENV === 'production') ? './build/images' : './public/images'
-      },
-      globalAttributes: {
-        loading: 'lazy',
-        sizes: '(min-width: 1340px) 720px, (min-width: 1040px) calc(85.71vw - 411px), (min-width: 940px) calc(100vw - 480px), (min-width: 780px) calc(100vw - 384px), calc(98.26vw - 27px)'
-      },
-      resolvePath(src, env) {
-        return env.page.inputPath.split('/').slice(0, -1).concat(src).join('/');
-      }
+    .use(require('markdown-it-image-figures'), {
+      figcaption: "title",
+      link: true, // links to the passthrough version of the image
     });
-  */
+
   eleventyConfig.setLibrary('md', Markdown);
 
   eleventyConfig.addPlugin(eleventyImageTransformPlugin, {
       // which file extensions to process
       extensions: 'html',
       // optional, output image formats
-      formats: ['jpg', 'webp'],
+      formats: ['jpg', 'webp', 'avif'],
       // optional, output image widths
-      widths: ['auto', 400, 800],
+      widths: ['auto', 400, 550, 640, 800],
       // optional, attributes assigned on <img> override these values.
       defaultAttributes: {
           loading: 'lazy',
@@ -151,9 +134,13 @@ module.exports = async function(eleventyConfig) {
 
 
   // Passthrough
-  // if (process.env.NODE_ENV === 'production') eleventyConfig.addPassthroughCopy({ 'site/static': '.' }); // Only one per destination folder, next is better for dev
-  eleventyConfig.addPassthroughCopy({ 'site/static': '.' }); // Only one per destination folder, next is better for dev
-  // eleventyConfig.addPassthroughCopy({ [`site/_themes/${theme}/static/**`]: '.' });
+  eleventyConfig.addPassthroughCopy({ 'site/static': '.' });
+
+  // pass through original images, for full sized links
+  eleventyConfig.addPassthroughCopy("site/posts/**/*.jpg");
+  eleventyConfig.addPassthroughCopy("site/posts/**/*.png");
+  eleventyConfig.addPassthroughCopy("site/posts/**/*.svg");
+
   // eleventyConfig.addPassthroughCopy({ 'node_modules/@fontsource/{abril-fatface,pt-sans}/files/{abril-fatface,pt-sans}-latin-{400,700}*.woff2': 'css/files' });
   eleventyConfig.setServerPassthroughCopyBehavior('passthrough');
 
