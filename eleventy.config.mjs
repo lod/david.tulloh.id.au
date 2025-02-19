@@ -1,21 +1,25 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+
+import markdownit from 'markdown-it';
+import markdownit_emoji from 'markdown-it-emoji/light.js';
+import markdownit_attrs from 'markdown-it-attrs';
+import markdownit_linkattrs from 'markdown-it-link-attributes';
+import markdownit_imagefigures from 'markdown-it-image-figures';
+import { eleventyImageTransformPlugin } from '@11ty/eleventy-img';
+
+import html_minifier from 'html-minifier';
+import glob from 'fast-glob';
+import hljs from 'highlight.js';
+import eleventySass from '@11tyrocks/eleventy-plugin-sass-lightningcss';
+
+dotenv.config();
+
+const theme = process.env.npm_package_config_theme;
 
 
-const
-  glob = require('fast-glob'),
-  hljs = require('highlight.js'),
-  eleventySass = require("@11tyrocks/eleventy-plugin-sass-lightningcss");
-
-const
-  projectName = process.env.npm_package_name,
-  theme = process.env.npm_package_config_theme;
-
-
-module.exports = async function(eleventyConfig) {
-  const { eleventyImageTransformPlugin } = await import("@11ty/eleventy-img");
-
+export default async function(eleventyConfig) {
   // Engine: Markdown & plugins
-  const Markdown = require('markdown-it')({
+  const Markdown = markdownit({
     html: true,         // Enable HTML tags in source
     breaks: false,       // Convert '\n' in paragraphs into <br>
     linkify: true,      // Autoconvert URL-like text to links
@@ -33,18 +37,19 @@ module.exports = async function(eleventyConfig) {
       return '';
     }
   })
-    .use(require('markdown-it-emoji/light'))
-    .use(require('markdown-it-link-attributes'), {
+
+    .use(markdownit_emoji)
+    .use(markdownit_linkattrs, {
       pattern: /^(https?:)?\/\//,
       attrs: {
         target: '_blank',
         rel: 'noopener'
       }
     })
-    .use(require('markdown-it-attrs'), {
+    .use(markdownit_attrs, {
       allowedAttributes: ['id', 'class']
     })
-    .use(require('markdown-it-image-figures'), {
+    .use(markdownit_imagefigures, {
       figcaption: "title",
       link: true, // links to the passthrough version of the image
     });
@@ -75,23 +80,28 @@ module.exports = async function(eleventyConfig) {
 
 
   // Filters
-  glob.sync('./site/_filters/*.js').forEach(file => {
-    let filters = require('./' + file);
-    Object.keys(filters).forEach(name => eleventyConfig.addFilter(name, filters[name]));
-  });
+  for (const file of glob.sync('./site/_filters/*.js')) {
+    const { default: filters } = await import('./' + file);
+    for (const [name, filter] of Object.entries(filters)) {
+      eleventyConfig.addFilter(name, filter);
+    }
+  }
 
   // Shortcodes
-  glob.sync('./site/_shortcodes/*.js').forEach(file => {
-    let shortcodes = require('./' + file);
-    Object.keys(shortcodes).forEach(name => eleventyConfig.addShortcode(name, shortcodes[name]));
-  });
+  for (const file of glob.sync('./site/_shortcodes/*.js')) {
+    const { default: shortcodes } = await import('./' + file);
+    for (const [name, code] of Object.entries(shortcodes)) {
+      eleventyConfig.addShortcode(name, code);
+    }
+  }
 
   // PairedShortcodes
-  glob.sync('./site/_pairedShortcodes/*.js').forEach(file => {
-    let pairedShortcodes = require('./' + file);
-    Object.keys(pairedShortcodes).forEach(name => eleventyConfig.addPairedShortcode(name, pairedShortcodes[name]));
-  });
-
+  for (const file of glob.sync('./site/_pairedShortcodes/*.js')) {
+    const { default: shortcodes } = await import('./' + file);
+    for (const [name, code] of Object.entries(shortcodes)) {
+      eleventyConfig.addPairedShortcode(name, code);
+    }
+  }
 
   // Collections
   eleventyConfig.addCollection('pages', (collectionApi) => collectionApi.getFilteredByGlob('./site/pages/**/*.md'));
@@ -120,7 +130,7 @@ module.exports = async function(eleventyConfig) {
     // Transform : html-minifier
     eleventyConfig.addTransform('html-minify', async (content, outputPath) => {
       if (outputPath && /(\.html|\.xml)$/.test(outputPath)) {
-        return require('html-minifier').minify(content, {
+        return html_minifier.minify(content, {
           useShortDoctype: true,
           minifyJS: true,
           collapseWhitespace: true,
