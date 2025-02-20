@@ -40,7 +40,9 @@ export default async function(eleventyConfig) {
 
     .use(markdownit_emoji)
     .use(markdownit_linkattrs, {
-      pattern: /^(https?:)?\/\//,
+      matcher(href, config) {
+        return href.startsWith("(https?:)?\/\/")
+      },
       attrs: {
         target: '_blank',
         rel: 'noopener'
