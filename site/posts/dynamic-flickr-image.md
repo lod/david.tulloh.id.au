@@ -4,7 +4,7 @@ date: 2025-02-12
 tags: ["javascript", "blog"]
 ---
 
-When I got to the end of putting together this blog it was looking a little bare, I felt in needed a nice photo. Not being able to decide on the photo to use, I thought a random photo from an album would be better... because choosing a albums worth of images would somehow be easier (I consider the current photos placeholders, because I still haven't solved the actual original problem).
+When I got to the end of putting together this blog it was looking a little bare, I felt in needed a nice photo. Not being able to decide on the photo to use, I thought a random photo from an album would be better... because choosing a album'ss worth of images would somehow be easier (I consider the current photos placeholders, because I still haven't solved the actual original problem).
 
 Rather than self hosting this I, for some reason (probably because 11ty images are fiddly and annoying), decided to go with Flickr.  Flickr turned out to work really well.
 
@@ -349,7 +349,7 @@ The twist, because life can never be too easy, is that the browser always does t
 
 This technique also handles the device pixel ratio (DPR) variations.  If your device has a high DPR, like an iPhone with a DPR of 3, then the browser will select an image that is 3x larger to get the proper resolution.  This means the download is 9x bigger and slower (3^2) but that's probably what iPhone users want.  This could be incorporated into the second draft technique using `window.devicePixelRatio` but I didn't know, I discovered DPR was a relevant things while debugging why the mobile image selection seemed too large.
 
-This currently code is running on the blog (as of writing) on the left or top, depending on your browser.
+This code is currently running on the blog (as of writing) on the left or top, depending on your browser.
 
 I'm also providing an iframe below though, because it may change in the future.
 
@@ -429,7 +429,7 @@ async function draw_random_image_from_flickr(target_img, api_key, user_id, album
 
 ## Next steps
 
-I experimented with proloading the image.  Currently the "loading" text is from the image placeholder which disappears when the new image starts to load, not when it finishes loading. Preloading the appropriate size is messy. The better solution seems to be to overlay a loading message over the image and then remove it using the image load event. But I've reached the end of my caring for now.
+I experimented with preloading the image.  Currently the "loading" text is from the image placeholder which disappears when the new image starts to load, not when it finishes loading. Preloading the appropriate size is messy. The better solution seems to be to overlay a loading message over the image and then remove it using the image load event. But I've reached the end of my caring for now.
 
 The current setup is a one shot, it doesn't react to future layout changes. For example if a browser window was shrunk down to a narrow column it will switch to the mobile layout and the image size constraints will change, but I won't update the image choice setup.  I could handle this by tracking the img changed event, but it is actually kinda messy. In the current setup the initial placeholder image is large, it fills the available space. When the real image is selected the non-constraining element of this space is shrunk down to retain the aspect ratio.  Handling the layout shift needs to undo this, probably by having the sizing based off a larger container box.  Ignoring this for now because it should be super rare, and everything will still be ok as it currently stands, it is just that the image choice may not be optimal. Another approach may be to use the CSS object-fit property instead of resizing.
 
